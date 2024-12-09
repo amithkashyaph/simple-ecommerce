@@ -28,6 +28,12 @@ public class CategoryController {
         return "Creating Category";
     }
 
+    @PutMapping("/api/admin/categories/{categoryId}")
+    public String updateCategory(@RequestBody Category category, @PathVariable int categoryId) {
+        return categoryService.updateCategory(category, categoryId);
+    }
+
+
     @DeleteMapping("/api/admin/categories/{categoryId}")
     public String deleteCategory(@PathVariable("categoryId") int id) {
         String status = categoryService.deleteCategory(id);

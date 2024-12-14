@@ -3,7 +3,9 @@ package com.project.ecommerce.controller;
 import com.project.ecommerce.entity.Category;
 import com.project.ecommerce.service.interfaces.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -29,14 +31,24 @@ public class CategoryController {
     }
 
     @PutMapping("/api/admin/categories/{categoryId}")
-    public String updateCategory(@RequestBody Category category, @PathVariable int categoryId) {
-        return categoryService.updateCategory(category, categoryId);
+    public ResponseEntity<String> updateCategory(@RequestBody Category category, @PathVariable int categoryId) {
+        try {
+            String status = categoryService.updateCategory(category, categoryId);
+            return ResponseEntity.ok(status);
+        } catch (ResponseStatusException e) {
+            return new ResponseEntity<>(e.getReason(), e.getStatusCode());
+        }
     }
 
 
     @DeleteMapping("/api/admin/categories/{categoryId}")
-    public String deleteCategory(@PathVariable("categoryId") int id) {
-        String status = categoryService.deleteCategory(id);
-        return status;
+    public ResponseEntity<String> deleteCategory(@PathVariable("categoryId") int id) {
+        try{
+            String status = categoryService.deleteCategory(id);
+            return ResponseEntity.ok(status);
+        }catch (ResponseStatusException e) {
+            return new ResponseEntity<>(e.getReason(), e.getStatusCode());
+        }
+
     }
 }

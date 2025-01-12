@@ -2,6 +2,7 @@ package com.project.ecommerce.controller;
 
 import com.project.ecommerce.entity.Category;
 import com.project.ecommerce.service.interfaces.CategoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class CategoryController {
     }
 
     @PostMapping("/api/admin/categories")
-    public String createCategory(@RequestBody Category category) {
+    public String createCategory(@Valid @RequestBody Category category) {
         categoryService.createCategory(category);
         return "Creating Category";
     }

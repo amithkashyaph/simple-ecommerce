@@ -13,6 +13,14 @@ import java.util.Map;
 @RestControllerAdvice
 public class CustomExceptionHandler {
 
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<String> resourceNotFoundException(ResourceNotFoundException exception) {
+        String message = exception.getMessage();
+
+        return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(APIException.class)
     public ResponseEntity<String> apiException(APIException e) {
         String message = e.getMessage();

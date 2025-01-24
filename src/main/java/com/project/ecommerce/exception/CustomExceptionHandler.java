@@ -13,6 +13,18 @@ import java.util.Map;
 @RestControllerAdvice
 public class CustomExceptionHandler {
 
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, String>> methodArgumentInvalidException(MethodArgumentNotValidException err) {
+        Map<String, String> response = new HashMap<>();
+        err.getBindingResult().getAllErrors().forEach(e -> {
+            String fieldName = ((FieldError)e).getField();
+            String message = e.getDefaultMessage();
+
+            response.put(fieldName, message);
+        });
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<String> resourceNotFoundException(ResourceNotFoundException exception) {

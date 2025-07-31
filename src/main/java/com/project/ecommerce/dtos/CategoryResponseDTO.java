@@ -11,5 +11,5 @@ import java.util.List;
 @NoArgsConstructor
 public class CategoryResponseDTO {
 
-    private List<CategoryRequestDTO> content;
+    private List<CategoryDTO> content;
 }

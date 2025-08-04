@@ -1,17 +1,19 @@
 package com.project.ecommerce.service;
 
+import com.project.ecommerce.dtos.CategoryDTO;
+import com.project.ecommerce.dtos.CategoryResponseDTO;
 import com.project.ecommerce.entity.Category;
 import com.project.ecommerce.exception.APIException;
 import com.project.ecommerce.exception.ResourceNotFoundException;
 import com.project.ecommerce.repositories.CategoryRepository;
 import com.project.ecommerce.service.interfaces.CategoryService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -19,17 +21,25 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryRepository categoryRepository;
 
     @Autowired
+    private ModelMapper modelMapper;
+
+    @Autowired
     public CategoryServiceImpl(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
     @Override
-    public List<Category> getAllCategories() {
+    public CategoryResponseDTO getAllCategories() {
         List<Category> categories = categoryRepository.findAll();
         if(categories.isEmpty()) {
             throw new APIException("Category list is empty");
         }
-        return categories;
+        List<CategoryDTO> categoryDTOs = categories.stream().map(category -> modelMapper.map(category, CategoryDTO.class)).toList();
+
+        CategoryResponseDTO categoryResponseDTO = new CategoryResponseDTO();
+        categoryResponseDTO.setContent(categoryDTOs);
+
+        return categoryResponseDTO;
     }
 
     @Override

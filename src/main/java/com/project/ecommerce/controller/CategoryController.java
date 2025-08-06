@@ -1,9 +1,11 @@
 package com.project.ecommerce.controller;
 
+import com.project.ecommerce.dtos.CategoryResponseDTO;
 import com.project.ecommerce.entity.Category;
 import com.project.ecommerce.service.interfaces.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -21,8 +23,9 @@ public class CategoryController {
     }
 
     @GetMapping("/api/public/categories")
-    public List<Category> getAllCategories() {
-        return categoryService.getAllCategories();
+    public ResponseEntity<CategoryResponseDTO> getAllCategories() {
+        CategoryResponseDTO categoryResponseDTO = categoryService.getAllCategories();
+        return new ResponseEntity<>(categoryResponseDTO, HttpStatus.OK);
     }
 
     @PostMapping("/api/admin/categories")

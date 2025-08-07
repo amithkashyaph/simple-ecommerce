@@ -1,5 +1,6 @@
 package com.project.ecommerce.controller;
 
+import com.project.ecommerce.dtos.CategoryDTO;
 import com.project.ecommerce.dtos.CategoryResponseDTO;
 import com.project.ecommerce.entity.Category;
 import com.project.ecommerce.service.interfaces.CategoryService;
@@ -29,9 +30,9 @@ public class CategoryController {
     }
 
     @PostMapping("/api/admin/categories")
-    public String createCategory(@Valid @RequestBody Category category) {
-        categoryService.createCategory(category);
-        return "Creating Category";
+    public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
+        CategoryDTO createdCategoryDTO =  categoryService.createCategory(categoryDTO);
+        return new ResponseEntity<>(createdCategoryDTO, HttpStatus.CREATED);
     }
 
     @PutMapping("/api/admin/categories/{categoryId}")

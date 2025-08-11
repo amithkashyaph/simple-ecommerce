@@ -36,12 +36,12 @@ public class CategoryController {
     }
 
     @PutMapping("/api/admin/categories/{categoryId}")
-    public ResponseEntity<String> updateCategory(@RequestBody Category category, @PathVariable int categoryId) {
+    public ResponseEntity<CategoryDTO> updateCategory(@RequestBody CategoryDTO categoryDTO, @PathVariable int categoryId) {
         try {
-            String status = categoryService.updateCategory(category, categoryId);
-            return ResponseEntity.ok(status);
+            CategoryDTO updatedCategory = categoryService.updateCategory(categoryDTO, categoryId);
+            return new ResponseEntity<>(updatedCategory, HttpStatus.NO_CONTENT);
         } catch (ResponseStatusException e) {
-            return new ResponseEntity<>(e.getReason(), e.getStatusCode());
+            return new ResponseEntity<>(null, e.getStatusCode());
         }
     }
 

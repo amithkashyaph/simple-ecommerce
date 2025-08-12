@@ -47,12 +47,12 @@ public class CategoryController {
 
 
     @DeleteMapping("/api/admin/categories/{categoryId}")
-    public ResponseEntity<String> deleteCategory(@PathVariable("categoryId") int id) {
+    public ResponseEntity<CategoryDTO> deleteCategory(@PathVariable("categoryId") int id) {
         try{
-            String status = categoryService.deleteCategory(id);
-            return ResponseEntity.ok(status);
+            CategoryDTO categoryDTO = categoryService.deleteCategory(id);
+            return new ResponseEntity<>(categoryDTO, HttpStatus.OK);
         }catch (ResponseStatusException e) {
-            return new ResponseEntity<>(e.getReason(), e.getStatusCode());
+            return new ResponseEntity<>(null, e.getStatusCode());
         }
 
     }

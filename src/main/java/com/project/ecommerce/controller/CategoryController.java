@@ -23,6 +23,11 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+    @GetMapping("/echo")
+    public String echoMessage() {
+        return "Dummy API to demonstrate Request Param usage";
+    }
+
     @GetMapping("/api/public/categories")
     public ResponseEntity<CategoryResponseDTO> getAllCategories() {
         CategoryResponseDTO categoryResponseDTO = categoryService.getAllCategories();

@@ -24,8 +24,8 @@ public class CategoryController {
     }
 
     @GetMapping("/echo")
-    public ResponseEntity<String> echoMessage() {
-        return new ResponseEntity<>("Dummy API to demonstrate Request Param usage", HttpStatus.OK);
+    public ResponseEntity<String> echoMessage(@RequestParam(name = "message") String message) {
+        return new ResponseEntity<>("Displaying message " + message, HttpStatus.OK);
     }
 
     @GetMapping("/api/public/categories")

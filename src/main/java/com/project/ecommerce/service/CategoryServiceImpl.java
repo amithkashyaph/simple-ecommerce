@@ -29,7 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryResponseDTO getAllCategories() {
+    public CategoryResponseDTO getAllCategories(Integer pageNumber, Integer pageSize) {
         List<Category> categories = categoryRepository.findAll();
         if(categories.isEmpty()) {
             throw new APIException("Category list is empty");

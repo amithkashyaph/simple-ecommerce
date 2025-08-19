@@ -35,7 +35,6 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryResponseDTO getAllCategories(Integer pageNumber, Integer pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
         Page<Category> categoriesPage = categoryRepository.findAll(pageable);
-        List<Category> categories = categoryRepository.findAll();
         if(categoriesPage.isEmpty()) {
             throw new APIException("Category list is empty");
         }

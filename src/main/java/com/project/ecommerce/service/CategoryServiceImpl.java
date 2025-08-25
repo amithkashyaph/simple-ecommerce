@@ -32,7 +32,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryResponseDTO getAllCategories(Integer pageNumber, Integer pageSize) {
+    public CategoryResponseDTO getAllCategories(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
         Page<Category> categoriesPage = categoryRepository.findAll(pageable);
         List<Category> categoriesList = categoriesPage.getContent();

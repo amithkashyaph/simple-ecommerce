@@ -35,9 +35,10 @@ public class CustomExceptionHandler {
     }
 
     @ExceptionHandler(APIException.class)
-    public ResponseEntity<String> apiException(APIException e) {
+    public ResponseEntity<APIResponse> apiException(APIException e) {
         String message = e.getMessage();
+        APIResponse apiResponse = new APIResponse(message, false);
 
-        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
     }
 }

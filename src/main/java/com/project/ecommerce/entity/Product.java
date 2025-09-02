@@ -14,6 +14,10 @@ public class Product {
     @Id
     private Long productId;
 
+    private String productName;
+    private String description;
+    private Integer quantity;
+    private double price;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

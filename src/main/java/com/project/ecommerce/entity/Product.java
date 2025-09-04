@@ -18,6 +18,7 @@ public class Product {
     private Integer quantity;
     private double price;
     private double discountedPrice;
+    private boolean isAvailable;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

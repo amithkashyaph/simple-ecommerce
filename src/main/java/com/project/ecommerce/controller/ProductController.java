@@ -21,6 +21,7 @@ public class ProductController {
     }
     @GetMapping
     public List<ProductResponseDTO> getAllProducts() {
-        return null;
+        List<ProductResponseDTO> productResponseDTOList = productService.getAllProducts();
+        return productResponseDTOList;
     }
 }

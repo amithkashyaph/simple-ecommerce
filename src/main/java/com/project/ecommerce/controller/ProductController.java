@@ -1,8 +1,10 @@
 package com.project.ecommerce.controller;
 
+import com.project.ecommerce.dtos.ProductDTO;
 import com.project.ecommerce.dtos.ProductResponseDTO;
 import com.project.ecommerce.service.interfaces.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,5 +27,8 @@ public class ProductController {
         return productResponseDTOList;
     }
 
+    public ResponseEntity<ProductDTO> addProduct() {
+        return null;
+    }
 
 }

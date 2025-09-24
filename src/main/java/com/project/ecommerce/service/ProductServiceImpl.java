@@ -24,4 +24,9 @@ public class ProductServiceImpl implements ProductService {
         List<Product> productList = productRepository.findAll();
         return null;
     }
+
+    @Override
+    public ProductResponseDTO addProduct(Product product) {
+        return null;
+    }
 }

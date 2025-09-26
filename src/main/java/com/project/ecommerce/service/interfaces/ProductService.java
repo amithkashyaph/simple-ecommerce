@@ -10,4 +10,6 @@ public interface ProductService {
     List<ProductResponseDTO> getAllProducts();
 
     ProductResponseDTO addProduct(Product product);
+
+    ProductResponseDTO getProductById(Long id);
 }

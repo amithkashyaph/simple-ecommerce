@@ -31,4 +31,8 @@ public class ProductController {
         return null;
     }
 
+    public ResponseEntity<ProductResponseDTO> getProductById() {
+        return null;
+    }
+
 }

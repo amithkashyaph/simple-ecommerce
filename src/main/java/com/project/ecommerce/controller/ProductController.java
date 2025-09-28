@@ -31,6 +31,7 @@ public class ProductController {
         return null;
     }
 
+    @GetMapping("/categories/{categoryId}/products/{productId}")
     public ResponseEntity<ProductResponseDTO> getProductById() {
         return null;
     }

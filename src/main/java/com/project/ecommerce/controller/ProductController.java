@@ -32,7 +32,7 @@ public class ProductController {
     }
 
     @GetMapping("/categories/{categoryId}/products/{productId}")
-    public ResponseEntity<ProductResponseDTO> getProductById() {
+    public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable Long categoryId, @PathVariable Long productId) {
         return null;
     }
 

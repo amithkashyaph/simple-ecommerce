@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductResponseDTO addProduct(Product product) {
+    public ProductResponseDTO addProduct(Long categoryId, Product product) {
         return null;
     }
 

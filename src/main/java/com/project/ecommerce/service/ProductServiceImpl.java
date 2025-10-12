@@ -2,7 +2,9 @@ package com.project.ecommerce.service;
 
 import com.project.ecommerce.dtos.ProductDTO;
 import com.project.ecommerce.dtos.ProductResponseDTO;
+import com.project.ecommerce.entity.Category;
 import com.project.ecommerce.entity.Product;
+import com.project.ecommerce.repositories.CategoryRepository;
 import com.project.ecommerce.repositories.ProductRepository;
 import com.project.ecommerce.service.interfaces.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,12 @@ public class ProductServiceImpl implements ProductService {
 
     private ProductRepository productRepository;
 
+    private CategoryRepository categoryRepository;
+
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
     }
     @Override
     public List<ProductResponseDTO> getAllProducts() {
@@ -27,6 +32,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductResponseDTO addProduct(Long categoryId, Product product) {
+        Category category = categoryRepository.findById(categoryId).get();
         return null;
     }
 

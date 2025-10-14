@@ -18,7 +18,8 @@ public class Product {
     private String description;
     private Integer quantity;
     private double price;
-    private double discountedPrice;
+    private double discount;
+    private double specialPrice;
     private boolean isAvailable;
 
     @ManyToOne

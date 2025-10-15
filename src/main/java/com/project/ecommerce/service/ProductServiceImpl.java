@@ -4,6 +4,7 @@ import com.project.ecommerce.dtos.ProductDTO;
 import com.project.ecommerce.dtos.ProductResponseDTO;
 import com.project.ecommerce.entity.Category;
 import com.project.ecommerce.entity.Product;
+import com.project.ecommerce.exception.ResourceNotFoundException;
 import com.project.ecommerce.repositories.CategoryRepository;
 import com.project.ecommerce.repositories.ProductRepository;
 import com.project.ecommerce.service.interfaces.ProductService;
@@ -32,7 +33,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductResponseDTO addProduct(Long categoryId, Product product) {
-        Category category = categoryRepository.findById(categoryId).get();
+        Category category = categoryRepository.findById(categoryId).orElseThrow(() ->  new ResourceNotFoundException("Category", "categoryId", categoryId));
         return null;
     }
 

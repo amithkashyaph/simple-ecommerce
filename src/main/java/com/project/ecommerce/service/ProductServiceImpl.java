@@ -34,6 +34,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductResponseDTO addProduct(Long categoryId, Product product) {
         Category category = categoryRepository.findById(categoryId).orElseThrow(() ->  new ResourceNotFoundException("Category", "categoryId", categoryId));
+        product.setCategory(category);
+        product.setImage("default.png");
         return null;
     }
 
